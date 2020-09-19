@@ -9,7 +9,7 @@ const giftService = require('../../service/giftService/giftService');
             var arr = giftService.getHashMap(items);
             res.status(200).json({
             status:'success',
-            results:items.length,
+            results:arr.length,
             items:arr
         });
         }catch(error){
