@@ -6,14 +6,11 @@ const giftService = require('../../service/giftService/giftService');
         try{   
             const items = await Gifts.find({subcategory: {$in: itemsArr}});
             //service call
-            var rankedHashMap = giftService.getHashMap(items);
-            rankedHashMap.forEach((value,key)=>{
-                console.log(`key: ${key}  value: ${value}`);
-            })
+            var arr = giftService.getHashMap(items);
             res.status(200).json({
             status:'success',
             results:items.length,
-            items:items
+            items:arr
         });
         }catch(error){
             res.status(404).json({
