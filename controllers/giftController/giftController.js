@@ -3,14 +3,17 @@ const giftService = require('../../service/giftService/giftService');
     exports.getAllItems = async(req, res)=>{
         //code getAllGifts 
         var itemsArr = req.params.subcategory.split(',');
-        try{   
+        try{
             const items = await Gifts.find({subcategory: {$in: itemsArr}});
             //service call
             var arr = giftService.getHashMap(items);
+            var subcatArr = giftService.getHashMapSubcategory(items);
             res.status(200).json({
             status:'success',
-            results:arr.length,
-            items:arr
+            returnArr : items,
+            results:items.length,
+            items:arr,
+            subcategoryHashmap: subcatArr
         });
         }catch(error){
             res.status(404).json({
@@ -20,9 +23,10 @@ const giftService = require('../../service/giftService/giftService');
         }  
    }
 
+
+
    exports.createCategory = async(req,res)=>{
     //create category code 
-    console.log(req.body)
     try{
     const newCategory = await Gifts.create(req.body);      
     res.status(201).json({
@@ -40,3 +44,21 @@ const giftService = require('../../service/giftService/giftService');
     }
    }
 
+   exports.deleteAllItems = async(req,res)=>{
+    try{
+       var mainCategory = req.params.maincategory;
+       await Gifts.remove({ maincategory:mainCategory})
+       res.status(204).json({
+            status:'success',
+            message:'documents deleted',
+            data:{
+                items:null
+            }
+        });
+        }catch(error){ 
+            res.status(404).json({
+                status:'fail',
+                message:error
+            });
+        }   
+   }

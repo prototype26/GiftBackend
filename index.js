@@ -21,10 +21,11 @@ mongoose.connect(DB,{
 
 const port = process.env.PORT;
 const giftRouter = require('./routes/giftRoutes/giftRoutes');
-
+const giftCardsMapRouter = require('./routes/giftCardsRoutes/giftCardsRoutes');
 //mounting of router
 //middleware
 app.use('/giftapi/v1/gifts',giftRouter);    
+app.use('/giftapi/v1/giftsCards',giftCardsMapRouter);
 
 app.listen(port,()=>{
     console.log(`App running on port :: ${port}`);

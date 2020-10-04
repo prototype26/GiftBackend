@@ -3,11 +3,13 @@ const mongoose = require('mongoose');
 const giftSchema = new mongoose.Schema({
     maincategory:{
         type:String,
-        required:[true,'maincategory mandatory']
+        required:[true,'maincategory mandatory'],
+        unique:true,
     },
     subcategory:{
         type:String,
         required:[true,'subcategory mandatory'],
+        unique:true,
     },
 });
 

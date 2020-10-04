@@ -8,6 +8,10 @@ router
    
 router
    .route('/')
-   .post(giftController.createCategory);
+   .post(giftController.createCategory)
+   // .delete(giftController.deleteAllItems)
 
+router
+   .route('/:maincategory')  
+   .delete(giftController.deleteAllItems) 
 module.exports = router;

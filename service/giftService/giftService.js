@@ -25,3 +25,32 @@ exports.getHashMap = (itemsArr) => {
     });
     return arrMap;
 }
+
+//service method accepts array of json objects and returns hashmap of ranked subcategories 
+exports.getHashMapSubcategory = (itemsArr) => {
+    var hashmap = new Map();
+    itemsArr.forEach(jsonObj => {
+        if (hashmap.has(jsonObj.subcategory)) {
+            //for existing value increase count by 1.
+            var count = hashmap.get(jsonObj.subcategory);
+            hashmap.set(jsonObj.subcategory, (count + 1));
+        } else {
+            //initial value set to 0
+            hashmap.set(jsonObj.subcategory, 0);
+        }
+    });
+    var sortedMap = new Map([...hashmap.entries()].sort((a, b) => b[1] - a[1]))
+    var rankedMap = new Map([...sortedMap.entries()].slice(0, 10)); //return a sorted hashmap of 10 elements
+    var arrMap = [];
+    rankedMap.forEach((value, key) => {
+        var json = {
+            subcategory: "",
+            count: ""
+        }
+        json.subcategory = key;
+        json.count = value;
+        arrMap.push(json);
+    });
+    return arrMap;
+}
+
