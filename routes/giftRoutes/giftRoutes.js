@@ -5,13 +5,13 @@ const giftController = require('../../controllers/giftController/giftController'
 router
    .route('/:subcategory')
    .get(giftController.getAllItems)
-   
+
 router
    .route('/')
    .post(giftController.createCategory)
-   // .delete(giftController.deleteAllItems)
+// .delete(giftController.deleteAllItems)
 
 router
-   .route('/:maincategory')  
-   .delete(giftController.deleteAllItems) 
+   .route('/:maincategory')
+   .delete(giftController.deleteAllItems)
 module.exports = router;

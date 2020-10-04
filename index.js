@@ -5,29 +5,30 @@ const app = express();
 const cors = require('cors');
 app.use(express.json());
 app.use(cors());
-dotenv.config({path:'./config.env'});
+dotenv.config({
+    path: './config.env'
+});
 
-const DB = process.env.DATABASE.replace('<PASSWORD>',process.env.DATABASE_PASSWORD);
+const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
 
 //DB connection
-mongoose.connect(DB,{
-    useNewUrlParser:true,
-    useCreateIndex:true,
-    useFindAndModify:false
-})
-.then(con=>{
-    console.log('DB connected')
-});
+mongoose.connect(DB, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useFindAndModify: false
+    })
+    .then(con => {
+        console.log('DB connected')
+    });
 
 const port = process.env.PORT;
 const giftRouter = require('./routes/giftRoutes/giftRoutes');
 const giftCardsMapRouter = require('./routes/giftCardsRoutes/giftCardsRoutes');
 //mounting of router
 //middleware
-app.use('/giftapi/v1/gifts',giftRouter);    
-app.use('/giftapi/v1/giftsCards',giftCardsMapRouter);
+app.use('/giftapi/v1/gifts', giftRouter);
+app.use('/giftapi/v1/giftsCards', giftCardsMapRouter);
 
-app.listen(port,()=>{
+app.listen(port, () => {
     console.log(`App running on port :: ${port}`);
 });
-

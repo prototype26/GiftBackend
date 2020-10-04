@@ -53,4 +53,3 @@ exports.getHashMapSubcategory = (itemsArr) => {
     });
     return arrMap;
 }
-
