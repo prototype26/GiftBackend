@@ -15,3 +15,23 @@ exports.getGiftCardsMap = async (req, res) => {
         });
     }
 }
+
+exports.createCategory = async (req, res) => {
+    //create category code 
+    try {
+        console.log("req.body: "+req.body);
+        const newCategory = await GiftsCardsMap.create(req.body);
+        res.status(201).json({
+            status: 'success',
+            message: 'Category created',
+            data: {
+                details: newCategory
+            }
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: 'fail',
+            message: error
+        })
+    }
+}

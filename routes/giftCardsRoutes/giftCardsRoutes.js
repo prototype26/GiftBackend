@@ -4,6 +4,6 @@ const giftMapController = require('../../controllers/giftMapController/giftMapCo
 
 router
    .route('/')
-   .get(giftMapController.getGiftCardsMap);
-
+   .get(giftMapController.getGiftCardsMap)
+   .post(giftMapController.createCategory)
 module.exports = router;

@@ -1,19 +1,13 @@
 const mongoose = require('mongoose');
 const giftCardsSchema = new mongoose.Schema({
-    maincategory: {
+    giftsCardsMainCategory: {
         type: String,
-        required: [true, "maincategory mandatory"],
-        unique: true,
+        required: [true, 'giftsCardsMainCategory mandatory'],
     },
-    maincategoryCards: {
+    giftsCardsSubCategory: {
         type: String,
-        required: [true, "maincategoryCards mandatory"],
-        unique: true,
-    },
-    subcategoryCards: {
-        type: String,
-        required: [true, "subcategoryCards mandatory"],
-        unique: true,
+        required: [true, 'giftsCardsSubCategory mandatory'],
+        unique:true
     }
 });
 
